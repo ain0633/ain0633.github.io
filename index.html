@@ -1,43 +1,435 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="ko">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>ainsof.dev</title>
-  <style>
-    :root { color-scheme: light; }
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    body {
-      min-height: 100vh; display: grid; place-items: center;
-      font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
-      background: linear-gradient(160deg, #fde7ef 0%, #f7f1ff 50%, #e9f3ff 100%);
-      color: #3a2a33;
-    }
-    main { text-align: center; padding: 2rem; }
-    h1 { font-size: clamp(2rem, 6vw, 3.2rem); letter-spacing: -0.02em; }
-    p.tag { margin-top: 0.6rem; color: #8a6b78; font-size: 1.05rem; }
-    .links { margin-top: 2.4rem; display: flex; flex-direction: column; gap: 0.9rem; align-items: center; }
-    a.card {
-      display: inline-flex; align-items: center; gap: 0.6rem;
-      padding: 0.9rem 1.6rem; border-radius: 999px;
-      background: rgba(255,255,255,0.7); backdrop-filter: blur(8px);
-      border: 1px solid rgba(255,255,255,0.9);
-      box-shadow: 0 8px 24px rgba(180,120,150,0.18);
-      text-decoration: none; color: #3a2a33; font-weight: 600;
-      transition: transform .15s ease, box-shadow .15s ease;
-    }
-    a.card:hover { transform: translateY(-2px); box-shadow: 0 12px 30px rgba(180,120,150,0.28); }
-    footer { margin-top: 3rem; font-size: 0.85rem; color: #b59aa6; }
-  </style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>이아인 — AI Engineer 포트폴리오</title>
+<meta name="description" content="문제를 정의하고 끝까지 만들어내는 개발자. LibAR · 리뷰테크 · 입찰메이트(RFPilot).">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+<style>
+:root{
+  --blue:#1B64DA;            /* 브랜드 컬러 — 바꾸려면 여기만 수정 */
+  --blue-deep:#1553B8;
+  --ink:#0B1A33;
+  --gray:#5B6B85;
+  --pale:#F2F6FC;
+  --line-light:rgba(11,26,51,.18);
+  --line-dark:rgba(255,255,255,.34);
+  --pad:clamp(24px,5vw,72px);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;overflow-x:hidden;background:#fff;color:var(--ink);
+  font-family:"Pretendard Variable",Pretendard,-apple-system,"Malgun Gothic",sans-serif;
+  font-size:16px;line-height:1.7;letter-spacing:-.01em;
+  -webkit-font-smoothing:antialiased;
+}
+img{max-width:100%;display:block}
+a{color:inherit}
+
+/* ── 히어로 ─────────────────────────────── */
+.hero{
+  position:relative;min-height:100svh;background:var(--blue);color:#fff;
+  display:flex;flex-direction:column;justify-content:center;
+  padding:calc(var(--pad) + 40px) var(--pad) var(--pad);overflow:hidden;
+}
+/* 배경 — 옅은 격자 + 커서 주변만 밝아지는 스캔 레이어 (LibAR 검출 화면의 문법) */
+.hero{
+  --mx:28%; --my:42%;             /* 포인터 위치 — JS가 갱신 */
+  --grid:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='64' height='64'%3E%3Cpath d='M64 0H0v64' fill='none' stroke='%23ffffff' stroke-width='1'/%3E%3C/svg%3E");
+}
+.hero-grid,.hero-scan{
+  position:absolute;inset:-64px;background-image:var(--grid);pointer-events:none;
+}
+.hero-grid{opacity:.085}
+.hero-scan{
+  opacity:.55;background-color:rgba(255,255,255,.04);
+  -webkit-mask-image:radial-gradient(230px circle at var(--mx) var(--my),#000 0%,rgba(0,0,0,.5) 44%,transparent 74%);
+  mask-image:radial-gradient(230px circle at var(--mx) var(--my),#000 0%,rgba(0,0,0,.5) 44%,transparent 74%);
+}
+.hero-marks{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;opacity:.22}
+.hero-inner{position:relative;max-width:1180px;width:100%;margin:0 auto}
+.hero .eyebrow{
+  font-size:12px;letter-spacing:.14em;font-weight:600;
+  color:rgba(255,255,255,.62);margin:0 0 28px;
+}
+.hero h1{
+  margin:0;font-weight:800;line-height:1.14;letter-spacing:-.035em;
+  font-size:clamp(2.35rem,7.4vw,6.4rem);max-width:15ch;
+  font-variation-settings:"wght" 800;
+}
+.hero h1 .ch{display:inline-block;will-change:font-variation-settings}
+@media (prefers-reduced-motion:reduce){
+  .hero h1 .ch{font-variation-settings:"wght" 800 !important}
+  .hero-scan{display:none}
+}
+.hero .sub{
+  margin:26px 0 0;font-size:clamp(15px,1.5vw,19px);
+  color:rgba(255,255,255,.78);font-weight:500;
+}
+.meta{
+  margin:clamp(48px,7vw,86px) 0 0;display:grid;gap:10px 28px;
+  grid-template-columns:auto 1fr;max-width:560px;
+  border-top:1px solid rgba(255,255,255,.22);padding-top:22px;
+}
+.meta dt{font-size:12.5px;color:rgba(255,255,255,.55);font-weight:500}
+.meta dd{margin:0;font-size:13.5px;color:rgba(255,255,255,.95);font-weight:600}
+.scroll{
+  position:absolute;left:50%;bottom:26px;transform:translateX(-50%);
+  font-size:11px;letter-spacing:.2em;color:rgba(255,255,255,.62);text-align:center;
+}
+.scroll::after{
+  content:"";display:block;width:1px;height:34px;margin:10px auto 0;
+  background:linear-gradient(rgba(255,255,255,.6),rgba(255,255,255,0));
+}
+
+/* ── 섹션 공통 ───────────────────────────── */
+.sec{position:relative;padding:clamp(82px,11vw,150px) var(--pad);overflow:hidden}
+.sec--light{background:var(--pale)}
+.sec--dark{background:var(--blue);color:#fff}
+.sec--dark .deco{
+  position:absolute;right:-8%;top:8%;width:52%;max-width:760px;opacity:.07;
+  pointer-events:none;
+}
+.wrap{position:relative;max-width:1180px;margin:0 auto}
+.label{
+  font-size:11.5px;letter-spacing:.16em;font-weight:600;margin:0 0 clamp(40px,6vw,70px);
+  color:var(--gray);
+}
+.sec--dark .label{color:rgba(255,255,255,.55)}
+
+.grid{display:grid;grid-template-columns:minmax(0,.86fr) minmax(0,1.14fr);gap:clamp(40px,6vw,86px);align-items:center}
+
+.kicker{
+  display:inline-block;font-size:12px;font-weight:700;letter-spacing:.04em;
+  color:var(--blue);margin:0 0 16px;
+}
+.sec--dark .kicker{color:#BFD6FF}
+.grid h2{
+  margin:0;font-size:clamp(24px,2.5vw,32px);font-weight:800;
+  line-height:1.38;letter-spacing:-.03em;
+}
+.grid p.body{
+  margin:20px 0 0;font-size:15px;line-height:1.75;color:var(--gray);max-width:38ch;
+}
+.sec--dark p.body{color:rgba(255,255,255,.76)}
+
+.stats{display:flex;flex-wrap:wrap;gap:8px 30px;margin:28px 0 0;padding:0;list-style:none}
+.stats li{font-size:13px;color:var(--gray)}
+.sec--dark .stats li{color:rgba(255,255,255,.7)}
+.stats b{display:block;font-size:21px;font-weight:800;color:var(--ink);letter-spacing:-.02em}
+.sec--dark .stats b{color:#fff}
+
+.more{
+  display:inline-flex;align-items:center;gap:9px;margin-top:34px;
+  padding:13px 25px;border-radius:999px;font-size:14px;font-weight:700;
+  text-decoration:none;background:var(--blue);color:#fff;
+  transition:background .15s;
+}
+.more:hover{background:var(--blue-deep)}
+.sec--dark .more{background:#fff;color:var(--blue)}
+.sec--dark .more:hover{background:#E8F0FF}
+
+/* ── 디바이스 목업 ───────────────────────── */
+.stage{position:relative;display:flex;justify-content:center;align-items:center;gap:clamp(12px,2.4vw,30px);padding:18px 0 clamp(74px,8vw,104px)}
+.phone{
+  position:relative;flex:0 0 auto;width:clamp(152px,17vw,214px);
+  background:#0D1728;border-radius:30px;padding:8px;
+  box-shadow:0 26px 48px -16px rgba(9,22,45,.42),0 4px 12px rgba(9,22,45,.16);
+}
+.phone::before{
+  content:"";position:absolute;left:50%;top:13px;transform:translateX(-50%);
+  width:33%;height:5px;border-radius:99px;background:rgba(255,255,255,.26);z-index:2;
+}
+.phone img{border-radius:23px;width:100%;height:auto}
+.phone--a{transform:rotate(-6deg) translateY(10px)}
+.phone--b{transform:rotate(3.5deg) translateY(-14px);z-index:1}
+.phone--c{transform:rotate(7.5deg) translateY(22px)}
+
+.desk{position:relative;width:100%;padding:8px 0 clamp(70px,9vw,104px)}
+.win{
+  background:#0D1728;border-radius:12px;padding:8px;
+  box-shadow:0 28px 52px -18px rgba(9,22,45,.44),0 4px 12px rgba(9,22,45,.14);
+}
+.win img{border-radius:5px;width:100%;aspect-ratio:4/3;object-fit:cover;object-position:top}
+.bar{display:flex;gap:6px;padding:0 3px 8px}
+.bar i{width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,.26)}
+.win--main{position:relative;width:min(100%,470px);transform:rotate(-2deg)}
+.win--sub{
+  position:absolute;right:0;top:36%;width:min(58%,268px);
+  transform:rotate(4.5deg);
+}
+
+/* ── 리더선 캡션 ─────────────────────────── */
+/* 가는 리더선 + 작은 캡션 — 목업 아래에서 위로 선을 긋는다 */
+.note{
+  position:absolute;bottom:0;left:0;margin:0;
+  width:clamp(160px,17vw,232px);font-size:12.5px;line-height:1.55;
+}
+.note span{display:block;color:var(--gray)}
+.sec--dark .note span{color:rgba(255,255,255,.74)}
+.note::before{
+  content:"";position:absolute;left:12px;top:-26px;
+  width:1px;height:24px;background:var(--line-light);
+}
+.sec--dark .note::before{background:var(--line-dark)}
+.note--right{left:auto;right:0;text-align:right}
+.note--right::before{left:auto;right:12px}
+
+/* ── 마무리 ──────────────────────────────── */
+.outro{background:var(--blue);color:#fff;padding:clamp(86px,11vw,140px) var(--pad)}
+.outro h2{margin:0;font-size:clamp(26px,3.4vw,44px);font-weight:800;letter-spacing:-.03em;line-height:1.35}
+.links{list-style:none;margin:clamp(40px,5vw,60px) 0 0;padding:0;max-width:640px}
+.links li{border-top:1px solid rgba(255,255,255,.22)}
+.links a,.links span.k{display:block}
+.links li>div{display:flex;flex-wrap:wrap;gap:4px 24px;align-items:baseline;padding:18px 0}
+.links .k{font-size:12.5px;color:rgba(255,255,255,.55);min-width:88px}
+.links .v{font-size:15px;font-weight:600;color:#fff;text-decoration:none;word-break:break-all}
+.links .v:hover{text-decoration:underline}
+.foot{margin:clamp(48px,6vw,72px) 0 0;font-size:12.5px;color:rgba(255,255,255,.5)}
+
+/* ── 등장 애니메이션 (1개만) ──────────────── */
+.fade{opacity:0;transform:translateY(16px);transition:opacity .2s ease,transform .2s ease}
+.fade.in{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){.fade{opacity:1;transform:none;transition:none}}
+
+/* ── 반응형 ─────────────────────────────── */
+@media (max-width:900px){
+  .grid{grid-template-columns:1fr;gap:44px}
+  .stage{flex-wrap:wrap;gap:14px;padding-bottom:0}
+  .phone{width:min(46%,190px)}
+  .phone--a,.phone--b,.phone--c{transform:none}
+  .note{position:static;flex:1 0 100%;width:auto;padding:0 0 0 13px;margin:16px 0 0;border-left:1px solid var(--line-light)}
+  .sec--dark .note{border-left-color:var(--line-dark)}
+  .note::before{display:none}
+  .note--right{text-align:left}
+  .desk{padding-bottom:0}
+  .win--main,.win--sub{position:static;width:100%;transform:none}
+  .win--sub{max-width:320px;margin:18px auto 0}
+}
+@media (max-width:520px){
+  .phone{width:min(72%,236px)}
+  .hero h1{font-size:clamp(2.1rem,10vw,3rem);max-width:none}
+  .meta{grid-template-columns:auto 1fr;gap:8px 18px}
+}
+</style>
 </head>
 <body>
-  <main>
-    <h1>ainsof.dev</h1>
-    <p class="tag">이아인 · 작업실</p>
-    <div class="links">
-      <a class="card" href="/cherryblossom-timer/">🌸 벚꽃이 지면 — 뽀모도로 타이머</a>
+
+<!-- ══ 히어로 ══ -->
+<header class="hero">
+  <div class="hero-grid" aria-hidden="true"></div>
+  <div class="hero-scan" aria-hidden="true"></div>
+  <svg class="hero-marks" viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice" aria-hidden="true"
+       fill="none" stroke="#fff" stroke-width="1.5">
+    <!-- 검출 박스 모서리 꺾쇠 -->
+    <path d="M96 150h26M96 150v26M258 150h-26M258 150v26M96 268h26M96 268v-26M258 268h-26M258 268v-26"/>
+    <path d="M1168 214h30M1168 214v30M1362 214h-30M1362 214v30M1168 402h30M1168 402v-30M1362 402h-30M1362 402v-30"/>
+    <path d="M1054 620h22M1054 620v22M1196 620h-22M1196 620v22M1054 742h22M1054 742v-22M1196 742h-22M1196 742v-22"/>
+    <path d="M168 690h24M168 690v24M330 690h-24M330 690v24M168 800h24M168 800v-24M330 800h-24M330 800v-24"/>
+    <!-- 좁은 화면에서도 남는 중앙대 -->
+    <path d="M566 104h22M566 104v22M704 104h-22M704 104v22M566 228h22M566 228v-22M704 228h-22M704 228v-22"/>
+    <path d="M792 648h20M792 648v20M904 648h-20M904 648v20M792 758h20M792 758v-20M904 758h-20M904 758v-20"/>
+  </svg>
+  <div class="hero-inner">
+    <p class="eyebrow">PORTFOLIO — 이아인 / AI ENGINEER</p>
+    <h1>AI가 대체할 수 없는<br>이아인입니다.</h1>
+    <p class="sub">문제를 정의하고 끝까지 만들어내는 개발자</p>
+    <dl class="meta">
+      <dt>작업연도</dt><dd>2026</dd>
+      <dt>기여도</dt><dd>개인 프로젝트 2건 100% · 팀 프로젝트 1건 데이터 담당</dd>
+      <dt>사용기술</dt><dd>YOLO · 온디바이스 추론(WebGPU/WASM) · LLM 파이프라인 · RAG · React · Vite PWA</dd>
+    </dl>
+  </div>
+  <div class="scroll">SCROLL</div>
+</header>
+
+<!-- ══ 01 LIBAR ══ -->
+<section class="sec sec--light" id="libar">
+  <div class="wrap">
+    <p class="label fade">01. LIBAR</p>
+    <div class="grid">
+      <div class="fade">
+        <span class="kicker">온디바이스 AI · 개인 프로젝트</span>
+        <h2>서버 없이, 폰 안에서<br>서가를 읽는다</h2>
+        <p class="body">책이 사라지는 가장 흔한 경로는 도난이 아니라 잘못 꽂히는 것입니다. 서가 사진 한 장을 폰 브라우저 안의 AI 세 개가 검출·판독·대조해 오배열을 잡아냅니다. 서버 호출은 0회입니다.</p>
+        <ul class="stats">
+          <li><b>8분 19초</b>현장 세션 1회</li>
+          <li><b>79권</b>서가 4칸 판독</li>
+          <li><b>20,944권</b>장서목록 대조</li>
+        </ul>
+        <a class="more" href="libar/">자세히 보기 <span aria-hidden="true">→</span></a>
+      </div>
+
+      <div class="fade">
+        <div class="stage">
+          <div class="phone phone--a">
+            <img src="assets/shots/libar-1.jpg" alt="LibAR — 찾는 책 위치를 핀으로 표시한 화면" loading="lazy" decoding="async">
+          </div>
+          <div class="phone phone--b">
+            <img src="assets/shots/libar-2.jpg" alt="LibAR — 잘못 꽂힌 책을 감지한 화면" loading="lazy" decoding="async">
+          </div>
+          <div class="phone phone--c">
+            <img src="assets/shots/libar-4.jpg" alt="LibAR — 점검 현황 리포트 화면" loading="lazy" decoding="async">
+          </div>
+          <p class="note"><span>도서관 데이터 기반 온디바이스 AI 서비스</span></p>
+          <p class="note note--right"><span>초록은 제자리, 빨강은 잘못 꽂힘. 리포트는 앱이 현장에서 자동 생성한다.</span></p>
+        </div>
+      </div>
     </div>
-    <footer>made with care</footer>
-  </main>
+  </div>
+</section>
+
+<!-- ══ 02 리뷰테크 ══ -->
+<section class="sec sec--dark" id="reviewtech">
+  <svg class="deco" viewBox="0 0 400 400" aria-hidden="true" fill="none" stroke="#fff" stroke-width="1.4">
+    <circle cx="200" cy="200" r="178"/><circle cx="200" cy="200" r="122"/><circle cx="200" cy="200" r="66"/>
+    <path d="M22 200h356M200 22v356M74 74l252 252M326 74L74 326"/>
+  </svg>
+  <div class="wrap">
+    <p class="label fade">02. REVIEWTECH</p>
+    <div class="grid">
+      <div class="fade">
+        <span class="kicker">앱인토스 미니앱 · 단독 개발 2026.05–09</span>
+        <h2>느낀 점 한 줄이면,<br>자연스러운 리뷰 초안 세 개</h2>
+        <p class="body">LLM에 한 번 시키면 “AI 티”가 납니다. 리뷰테크는 생성 한 번으로 끝내지 않고 retrieve → generate → critique → revise 네 단계로 품질을 시스템으로 관리합니다.</p>
+        <ul class="stats">
+          <li><b>11.9초</b>초안 3개 완성</li>
+          <li><b>8개</b>지원 플랫폼</li>
+          <li><b>119</b>커밋 · 넉 달</li>
+        </ul>
+        <a class="more" href="reviewtech/">자세히 보기 <span aria-hidden="true">→</span></a>
+      </div>
+
+      <div class="fade">
+        <div class="stage">
+          <div class="phone phone--a">
+            <img src="assets/shots/rt-1.png" alt="리뷰테크 — 리뷰 종류를 고르는 1단계 화면" loading="lazy" decoding="async">
+          </div>
+          <div class="phone phone--b">
+            <img src="assets/shots/rt-2.png" alt="리뷰테크 — 리뷰 조건을 고르는 화면" loading="lazy" decoding="async">
+          </div>
+          <div class="phone phone--c">
+            <img src="assets/shots/rt-3.png" alt="리뷰테크 — 매장 리뷰 입력 화면" loading="lazy" decoding="async">
+          </div>
+          <p class="note"><span>하나만 고르면 바로 다음으로. 유저가 하는 일은 4단계 선택이 전부다.</span></p>
+          <p class="note note--right"><span>검수 LLM이 “AI가 쓴 티”가 나는 문장을 잡아내고, 걸린 문장만 다시 쓴다.</span></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ 03 입찰메이트 ══ -->
+<section class="sec sec--light" id="bidmate">
+  <div class="wrap">
+    <p class="label fade">03. BIDMATE — RFPILOT</p>
+    <div class="grid">
+      <div class="fade">
+        <span class="kicker">RAG 챗봇 · 5인 팀 3주 · 데이터 담당</span>
+        <h2>AI가 받은 점수는,<br>누가 매겼을까</h2>
+        <p class="body">공공기관 입찰 공고서는 수백 쪽짜리 한글 파일입니다. 이것을 AI가 대신 읽고 원문 근거와 함께 답하는 챗봇을 5명이 만들었고, 저는 AI를 채점할 ‘정답지’와 문서에 붙이는 ‘이름표’를 맡았습니다.</p>
+        <ul class="stats">
+          <li><b>100건</b>입찰 공고서</li>
+          <li><b>14,606</b>문서 조각</li>
+          <li><b>1,017</b>직접 만든 정답</li>
+        </ul>
+        <a class="more" href="bidmate/">자세히 보기 <span aria-hidden="true">→</span></a>
+      </div>
+
+      <div class="fade">
+        <div class="desk">
+          <div class="win win--main">
+            <div class="bar"><i></i><i></i><i></i></div>
+            <img src="assets/shots/bidmate-1.png" alt="RFPilot — 입찰 공고서에 질문하고 원문 근거와 함께 답을 받는 조회 화면" loading="lazy" decoding="async">
+          </div>
+          <div class="win win--sub">
+            <div class="bar"><i></i><i></i><i></i></div>
+            <img src="assets/shots/bidmate-2.png" alt="RFPilot — 추출된 준수 요구사항 체크리스트 화면" loading="lazy" decoding="async">
+          </div>
+          <p class="note"><span>답마다 응답 시간과 참고 문서 건수가 붙는다. 근거 없는 답은 내놓지 않는다.</span></p>
+          <p class="note note--right"><span>체크리스트의 ‘원문 검증됨 / 검토 필요’ 판정 기준이 제가 만든 정답지다.</span></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ 마무리 ══ -->
+<footer class="outro">
+  <div class="wrap">
+    <h2 class="fade">문제를 정의하고<br>끝까지 만들어내는 사람을 찾으신다면.</h2>
+    <ul class="links fade">
+      <li><div><span class="k">이메일</span><a class="v" href="mailto:leeaingm0633@gmail.com">leeaingm0633@gmail.com</a></div></li>
+      <li><div><span class="k">GitHub</span><a class="v" href="https://github.com/ain0633" target="_blank" rel="noopener">github.com/ain0633</a></div></li>
+      <li><div><span class="k">벚꽃 타이머</span><a class="v" href="https://ainsof.dev/cherryblossom-timer" target="_blank" rel="noopener">ainsof.dev/cherryblossom-timer</a></div></li>
+    </ul>
+    <p class="foot">© 2026 이아인</p>
+  </div>
+</footer>
+
+<script>
+/* 히어로 — 포인터를 따라 글자 굵기(Pretendard Variable)와 배경 스캔이 반응한다.
+   자동 재생 없음: 포인터가 움직일 때만 루프가 돈다. */
+(() => {
+  const hero = document.querySelector('.hero');
+  const h1 = hero.querySelector('h1');
+  if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+  // 글자를 쪼개면 스크린리더가 한 자씩 읽으므로 원문을 라벨로 고정
+  h1.setAttribute('aria-label', h1.innerText.replace(/\s+/g, ' ').trim());
+
+  // 글자를 한 자씩 span 으로 (공백·<br> 은 그대로 둔다)
+  for (const node of [...h1.childNodes]) {
+    if (node.nodeType !== 3) continue;
+    const frag = document.createDocumentFragment();
+    for (const ch of node.textContent) {
+      if (ch === ' ') { frag.append(ch); continue; }
+      const s = document.createElement('span');
+      s.className = 'ch'; s.textContent = ch;
+      frag.append(s);
+    }
+    node.replaceWith(frag);
+  }
+
+  const chars = [...h1.querySelectorAll('.ch')].map(el => ({el, w: 800}));
+  const REST = 800, NEAR = 900, FAR = 600, R = 300;
+  let px = null, py = null, raf = 0;
+
+  const tick = () => {
+    raf = 0;
+    let moving = false;
+    for (const c of chars) {
+      let target = REST;
+      if (px !== null) {
+        const r = c.el.getBoundingClientRect();
+        const d = Math.hypot(px - (r.left + r.width / 2), py - (r.top + r.height / 2));
+        const t = Math.max(0, 1 - d / R);
+        target = FAR + (NEAR - FAR) * t * t;
+      }
+      c.w += (target - c.w) * 0.18;
+      if (Math.abs(target - c.w) > 1) moving = true;
+      c.el.style.fontVariationSettings = `"wght" ${Math.round(c.w)}`;
+    }
+    if (moving || px !== null) raf = requestAnimationFrame(tick);
+  };
+  const kick = () => { if (!raf) raf = requestAnimationFrame(tick); };
+
+  hero.addEventListener('pointermove', e => {
+    const r = hero.getBoundingClientRect();
+    hero.style.setProperty('--mx', (e.clientX - r.left) + 'px');
+    hero.style.setProperty('--my', (e.clientY - r.top) + 'px');
+    px = e.clientX; py = e.clientY;
+    kick();
+  });
+  hero.addEventListener('pointerleave', () => { px = py = null; kick(); });
+})();
+
+const io = new IntersectionObserver((es) => {
+  for (const e of es) if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+}, {rootMargin: '0px 0px -8% 0px'});
+document.querySelectorAll('.fade').forEach(el => io.observe(el));
+</script>
 </body>
 </html>
