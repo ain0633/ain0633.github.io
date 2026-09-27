@@ -125,6 +125,16 @@ a{color:inherit}
 .sec--dark .stats li{color:rgba(255,255,255,.7)}
 .stats b{display:block;font-size:21px;font-weight:800;color:var(--ink);letter-spacing:-.02em}
 .sec--dark .stats b{color:#fff}
+.grid h2.name{font-size:clamp(36px,4vw,52px);line-height:1.1}
+.tagline{margin:14px 0 0;font-size:clamp(16px,1.5vw,19px);font-weight:700;letter-spacing:-.02em;line-height:1.45}
+.sec--dark .tagline{color:#fff}
+.grid p.body{max-width:none;word-break:keep-all}
+.pmeta{display:grid;grid-template-columns:auto 1fr;gap:10px 24px;margin:26px 0 0;max-width:560px;border-top:1px solid var(--line-light);padding-top:20px}
+.pmeta dt{font-size:12.5px;color:var(--gray);font-weight:500}
+.pmeta dd{margin:0;font-size:13.5px;color:var(--ink);font-weight:600;line-height:1.55}
+.sec--dark .pmeta{border-color:var(--line-dark)}
+.sec--dark .pmeta dt{color:rgba(255,255,255,.6)}
+.sec--dark .pmeta dd{color:#fff}
 
 .more{
   display:inline-flex;align-items:center;gap:9px;margin-top:34px;
@@ -248,7 +258,7 @@ a{color:inherit}
     <p class="sub">문제를 정의하고 끝까지 만들어내는 개발자</p>
     <dl class="meta">
       <dt>작업연도</dt><dd>2026</dd>
-      <dt>기여도</dt><dd>개인 프로젝트 2건 100% · 팀 프로젝트 1건 데이터 담당</dd>
+      <dt>기여도</dt><dd>개인 프로젝트 2건 기획·개발 전담 100% · 팀 프로젝트 1건 데이터 담당</dd>
       <dt>사용기술</dt><dd>YOLO · 온디바이스 추론(WebGPU/WASM) · LLM 파이프라인 · RAG · React · Vite PWA</dd>
     </dl>
   </div>
@@ -262,14 +272,15 @@ a{color:inherit}
     <div class="grid">
       <div class="fade">
         <span class="kicker">국립중앙도서관 2026 도서관 데이터 활용 공모전 우수상</span>
-        <span class="kicker-sub">온디바이스 AI · 개인 프로젝트</span>
-        <h2>서버 없이, 폰 안에서<br>서가를 읽는다</h2>
-        <p class="body">책이 사라지는 가장 흔한 경로는 도난이 아니라 잘못 꽂히는 것입니다. 서가 사진 한 장을 폰 브라우저 안의 AI 세 개가 검출·판독·대조해 오배열을 잡아냅니다. 서버 호출은 0회입니다.</p>
-        <ul class="stats">
-          <li><b>8분 19초</b>현장 세션 1회</li>
-          <li><b>79권</b>서가 4칸 판독</li>
-          <li><b>20,944권</b>장서목록 대조</li>
-        </ul>
+        <h2 class="name">LibAR</h2>
+        <p class="tagline">서가 사진 한 장으로 잘못 꽂힌 책을 찾는 온디바이스 AI</p>
+        <p class="body">폰 브라우저 안에서 검출·인식·판정 AI 세 모델이 돌아갑니다.<br>설치도 서버도 없고, 촬영 화면은 기기 밖으로 나가지 않습니다.</p>
+        <dl class="pmeta">
+          <dt>기간</dt><dd>2026.07.04 – 08.25 · 8주 · 커밋 175회</dd>
+          <dt>역할</dt><dd>개발 전담 1인 — 문제 정의, 데이터 구축, 학습·평가, 배포</dd>
+          <dt>협업</dt><dd>현직 사서와 장서 데이터·현장 점검 공동 수행 (영등포구립 대림도서관)</dd>
+          <dt>기술</dt><dd>YOLO26n · PP-OCRv5 · ONNX · WebGPU/WASM · Python→JS 이식</dd>
+        </dl>
         <a class="more" href="libar/">자세히 보기 <span aria-hidden="true">→</span></a>
       </div>
 
@@ -303,14 +314,15 @@ a{color:inherit}
     <div class="grid">
       <div class="fade">
         <span class="kicker">토스 미니앱 출시</span>
-        <span class="kicker-sub">앱인토스 · 단독 개발 2026.05–09</span>
-        <h2>느낀 점 한 줄이면,<br>자연스러운 리뷰 초안 세 개</h2>
-        <p class="body">LLM에 한 번 시키면 “AI 티”가 납니다. 리뷰테크는 생성 한 번으로 끝내지 않고 retrieve → generate → critique → revise 네 단계로 품질을 시스템으로 관리합니다.</p>
-        <ul class="stats">
-          <li><b>11.9초</b>초안 3개 완성</li>
-          <li><b>8개</b>지원 플랫폼</li>
-          <li><b>119</b>커밋 · 넉 달</li>
-        </ul>
+        <h2 class="name">리뷰테크</h2>
+        <p class="tagline">느낀 점 한 줄이면, 자연스러운 리뷰 초안 세 개</p>
+        <p class="body">LLM에게 리뷰를 시키면 ‘AI 티’가 납니다.<br>생성 한 번으로 끝내지 않고 retrieve → generate → critique → revise<br>파이프라인으로 품질을 시스템으로 관리합니다.</p>
+        <dl class="pmeta">
+          <dt>기간</dt><dd>2026.05 – 2026.09 · 넉 달 · 커밋 119회</dd>
+          <dt>역할</dt><dd>기획 – 개발 – 배포 – 운영 단독</dd>
+          <dt>출시</dt><dd>앱인토스 미니앱 정식 출시 2026-09-18 · 지원 플랫폼 8개</dd>
+          <dt>기술</dt><dd>React 19 · Vite · Fastify · SQLite · Gemini 2.5 Flash · gemini-embedding-001 · GitHub Actions · Lightsail · pm2</dd>
+        </dl>
         <a class="more" href="reviewtech/">자세히 보기 <span aria-hidden="true">→</span></a>
         <a class="more more--ghost" href="https://minion.toss.im/xUtNRNdo" target="_blank" rel="noopener">토스에서 앱 열기 <span aria-hidden="true">→</span></a>
       </div>
@@ -341,14 +353,15 @@ a{color:inherit}
     <div class="grid">
       <div class="fade">
         <span class="kicker">공공 입찰 공고서 RAG 챗봇</span>
-        <span class="kicker-sub">5인 팀 3주 · 데이터 담당</span>
-        <h2>AI가 받은 점수는,<br>누가 매겼을까</h2>
-        <p class="body">공공기관 입찰 공고서는 수백 쪽짜리 한글 파일입니다. 이것을 AI가 대신 읽고 원문 근거와 함께 답하는 챗봇을 5명이 만들었고, 저는 AI를 채점할 ‘정답지’와 문서에 붙이는 ‘이름표’를 맡았습니다.</p>
-        <ul class="stats">
-          <li><b>100건</b>입찰 공고서</li>
-          <li><b>14,606</b>문서 조각</li>
-          <li><b>1,017</b>직접 만든 정답</li>
-        </ul>
+        <h2 class="name">RFPilot</h2>
+        <p class="tagline">공공 입찰 공고서 RAG 챗봇 — 그중 정답지 · 메타데이터 구축</p>
+        <p class="body">5인 팀 프로젝트입니다. 검색 · 답변 생성 · 챗봇 화면은 팀원이 만들었고,<br>저는 AI를 채점할 ‘정답지’와 문서에 붙이는 ‘이름표’를 맡았습니다.</p>
+        <dl class="pmeta">
+          <dt>기간</dt><dd>2026.06.17 – 07.08 · 3주</dd>
+          <dt>팀</dt><dd>5인 — PM · DE(쪼개기·추출) · DE(이름표·정답지, 본인) · RE(검색) · SD(답변·화면)</dd>
+          <dt>역할</dt><dd>DE (Data Engineer) — 문서별 메타데이터 처리 / 골든 데이터셋 구축</dd>
+          <dt>기술</dt><dd>Python · pandas · rapidfuzz · tiktoken · LangGraph · FAISS · bge-m3 · gpt-5-mini · RAGAS (팀 전체 스택)</dd>
+        </dl>
         <a class="more" href="bidmate/">자세히 보기 <span aria-hidden="true">→</span></a>
       </div>
 
@@ -373,11 +386,15 @@ a{color:inherit}
 <!-- ══ 마무리 ══ -->
 <footer class="outro">
   <div class="wrap">
-    <h2 class="fade">문제를 정의하고<br>끝까지 만들어내는 사람을 찾으신다면.</h2>
+    <h2 class="fade">문제를 정의하고 오직 결과로 증명하는<br>AI Native 인재를 찾으신다면.</h2>
     <ul class="links fade">
+      <li><div><span class="k">포트폴리오(WEB)</span><a class="v" href="https://ainsof.dev">https://ainsof.dev</a></div></li>
+      <li><div><span class="k">LibAR</span><a class="v" href="https://ainsof.dev/libar/">https://ainsof.dev/libar/</a></div></li>
+      <li><div><span class="k">리뷰테크</span><a class="v" href="https://ainsof.dev/reviewtech/">https://ainsof.dev/reviewtech/</a></div></li>
+      <li><div><span class="k">리뷰테크 · 토스</span><a class="v" href="https://minion.toss.im/xUtNRNdo" target="_blank" rel="noopener">https://minion.toss.im/xUtNRNdo</a></div></li>
+      <li><div><span class="k">RFPilot</span><a class="v" href="https://ainsof.dev/bidmate/">https://ainsof.dev/bidmate/</a></div></li>
       <li><div><span class="k">이메일</span><a class="v" href="mailto:leeaingm0633@gmail.com">leeaingm0633@gmail.com</a></div></li>
       <li><div><span class="k">GitHub</span><a class="v" href="https://github.com/ain0633" target="_blank" rel="noopener">github.com/ain0633</a></div></li>
-      <li><div><span class="k">벚꽃 타이머</span><a class="v" href="https://ainsof.dev/cherryblossom-timer" target="_blank" rel="noopener">ainsof.dev/cherryblossom-timer</a></div></li>
     </ul>
     <p class="foot">© 2026 이아인</p>
   </div>
