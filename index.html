@@ -11,7 +11,7 @@
   --blue:#1B64DA;            /* 브랜드 컬러 — 바꾸려면 여기만 수정 */
   --blue-deep:#1553B8;
   --ink:#0B1A33;
-  --gray:#5B6B85;
+  --gray:#44526A;
   --pale:#F2F6FC;
   --line-light:rgba(11,26,51,.18);
   --line-dark:rgba(255,255,255,.34);
@@ -51,8 +51,8 @@ a{color:inherit}
 .hero-marks{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;opacity:.22}
 .hero-inner{position:relative;max-width:1180px;width:100%;margin:0 auto}
 .hero .eyebrow{
-  font-size:12px;letter-spacing:.14em;font-weight:600;
-  color:rgba(255,255,255,.62);margin:0 0 28px;
+  font-size:13px;letter-spacing:.14em;font-weight:600;
+  color:rgba(255,255,255,.8);margin:0 0 28px;
 }
 .hero h1{
   margin:0;font-weight:800;line-height:1.14;letter-spacing:-.035em;
@@ -66,18 +66,18 @@ a{color:inherit}
 }
 .hero .sub{
   margin:26px 0 0;font-size:clamp(15px,1.5vw,19px);
-  color:rgba(255,255,255,.78);font-weight:500;
+  color:rgba(255,255,255,.88);font-weight:500;
 }
 .meta{
   margin:clamp(48px,7vw,86px) 0 0;display:grid;gap:10px 28px;
   grid-template-columns:auto 1fr;max-width:560px;
   border-top:1px solid rgba(255,255,255,.22);padding-top:22px;
 }
-.meta dt{font-size:12.5px;color:rgba(255,255,255,.55);font-weight:500}
-.meta dd{margin:0;font-size:13.5px;color:rgba(255,255,255,.95);font-weight:600}
+.meta dt{font-size:13.5px;color:rgba(255,255,255,.78);font-weight:500}
+.meta dd{margin:0;font-size:14.5px;word-break:keep-all;color:rgba(255,255,255,.95);font-weight:600}
 .scroll{
   position:absolute;left:50%;bottom:26px;transform:translateX(-50%);
-  font-size:11px;letter-spacing:.2em;color:rgba(255,255,255,.62);text-align:center;
+  font-size:12px;letter-spacing:.2em;color:rgba(255,255,255,.8);text-align:center;
 }
 .scroll::after{
   content:"";display:block;width:1px;height:34px;margin:10px auto 0;
@@ -94,23 +94,23 @@ a{color:inherit}
 }
 .wrap{position:relative;max-width:1180px;margin:0 auto}
 .label{
-  font-size:11.5px;letter-spacing:.16em;font-weight:600;margin:0 0 clamp(40px,6vw,70px);
+  font-size:12.5px;letter-spacing:.16em;font-weight:600;margin:0 0 clamp(40px,6vw,70px);
   color:var(--gray);
 }
-.sec--dark .label{color:rgba(255,255,255,.55)}
+.sec--dark .label{color:rgba(255,255,255,.78)}
 
 .grid{display:grid;grid-template-columns:minmax(0,.86fr) minmax(0,1.14fr);gap:clamp(40px,6vw,86px);align-items:center}
 
 .kicker{
-  display:inline-block;font-size:12px;font-weight:700;letter-spacing:.04em;
+  display:inline-block;font-size:13px;font-weight:700;letter-spacing:.04em;
   color:var(--blue);margin:0 0 16px;
 }
 .sec--dark .kicker{color:#BFD6FF}
 .kicker-sub{
-  display:block;font-size:12px;font-weight:500;color:var(--gray);
+  display:block;font-size:13px;font-weight:500;color:var(--gray);
   margin:-10px 0 16px;letter-spacing:0;
 }
-.sec--dark .kicker-sub{color:rgba(255,255,255,.6)}
+.sec--dark .kicker-sub{color:rgba(255,255,255,.8)}
 .grid h2{
   margin:0;font-size:clamp(24px,2.5vw,32px);font-weight:800;
   line-height:1.38;letter-spacing:-.03em;
@@ -118,11 +118,11 @@ a{color:inherit}
 .grid p.body{
   margin:20px 0 0;font-size:15px;line-height:1.75;color:var(--gray);max-width:38ch;
 }
-.sec--dark p.body{color:rgba(255,255,255,.76)}
+.sec--dark p.body{color:rgba(255,255,255,.88)}
 
 .stats{display:flex;flex-wrap:wrap;gap:8px 30px;margin:28px 0 0;padding:0;list-style:none}
-.stats li{font-size:13px;color:var(--gray)}
-.sec--dark .stats li{color:rgba(255,255,255,.7)}
+.stats li{font-size:14px;color:var(--gray)}
+.sec--dark .stats li{color:rgba(255,255,255,.85)}
 .stats b{display:block;font-size:21px;font-weight:800;color:var(--ink);letter-spacing:-.02em}
 .sec--dark .stats b{color:#fff}
 .grid h2.name{font-size:clamp(36px,4vw,52px);line-height:1.1}
@@ -130,10 +130,10 @@ a{color:inherit}
 .sec--dark .tagline{color:#fff}
 .grid p.body{max-width:none;word-break:keep-all}
 .pmeta{display:grid;grid-template-columns:auto 1fr;gap:10px 24px;margin:26px 0 0;max-width:560px;border-top:1px solid var(--line-light);padding-top:20px}
-.pmeta dt{font-size:12.5px;color:var(--gray);font-weight:500}
-.pmeta dd{margin:0;font-size:13.5px;color:var(--ink);font-weight:600;line-height:1.55}
+.pmeta dt{font-size:13.5px;color:var(--gray);font-weight:500}
+.pmeta dd{margin:0;font-size:14.5px;word-break:keep-all;color:var(--ink);font-weight:600;line-height:1.55}
 .sec--dark .pmeta{border-color:var(--line-dark)}
-.sec--dark .pmeta dt{color:rgba(255,255,255,.6)}
+.sec--dark .pmeta dt{color:rgba(255,255,255,.8)}
 .sec--dark .pmeta dd{color:#fff}
 
 .more{
@@ -145,7 +145,14 @@ a{color:inherit}
 .more:hover{background:var(--blue-deep)}
 .sec--dark .more{background:#fff;color:var(--blue)}
 .sec--dark .more:hover{background:#E8F0FF}
-.more--ghost{margin-left:10px}
+.more--ghost{margin-left:10px;background:transparent;color:var(--blue);box-shadow:inset 0 0 0 1px var(--blue)}
+.more--ghost:hover{background:rgba(27,100,218,.08)}
+/* 토스 미니앱은 모바일에서만 열린다 — 마우스 환경에선 버튼 대신 QR */
+.toss-qr{display:none;align-items:center;gap:16px;margin-top:24px;max-width:440px}
+.toss-qr img{width:96px;height:96px;flex:0 0 auto;background:#fff;padding:6px;border-radius:12px}
+.toss-qr p{margin:0;font-size:14px;line-height:1.6;color:rgba(255,255,255,.88);word-break:keep-all}
+.toss-qr b{color:#fff;font-weight:700}
+@media (hover:hover) and (pointer:fine){.toss-open{display:none}.toss-qr{display:flex}}
 .sec--dark .more--ghost{
   background:transparent;color:#fff;box-shadow:inset 0 0 0 1px rgba(255,255,255,.5);
 }
@@ -185,10 +192,10 @@ a{color:inherit}
 /* 가는 리더선 + 작은 캡션 — 목업 아래에서 위로 선을 긋는다 */
 .note{
   position:absolute;bottom:0;left:0;margin:0;
-  width:clamp(160px,17vw,232px);font-size:12.5px;line-height:1.55;
+  width:clamp(160px,17vw,232px);font-size:13.5px;line-height:1.55;word-break:keep-all;
 }
 .note span{display:block;color:var(--gray)}
-.sec--dark .note span{color:rgba(255,255,255,.74)}
+.sec--dark .note span{color:rgba(255,255,255,.88)}
 .note::before{
   content:"";position:absolute;left:12px;top:-26px;
   width:1px;height:24px;background:var(--line-light);
@@ -204,10 +211,10 @@ a{color:inherit}
 .links li{border-top:1px solid rgba(255,255,255,.22)}
 .links a,.links span.k{display:block}
 .links li>div{display:flex;flex-wrap:wrap;gap:4px 24px;align-items:baseline;padding:18px 0}
-.links .k{font-size:12.5px;color:rgba(255,255,255,.55);min-width:88px}
+.links .k{font-size:13.5px;color:rgba(255,255,255,.78);min-width:88px}
 .links .v{font-size:15px;font-weight:600;color:#fff;text-decoration:none;word-break:break-all}
 .links .v:hover{text-decoration:underline}
-.foot{margin:clamp(48px,6vw,72px) 0 0;font-size:12.5px;color:rgba(255,255,255,.5)}
+.foot{margin:clamp(48px,6vw,72px) 0 0;font-size:13.5px;color:rgba(255,255,255,.75)}
 
 /* ── 등장 애니메이션 (1개만) ──────────────── */
 .fade{opacity:0;transform:translateY(16px);transition:opacity .2s ease,transform .2s ease}
@@ -282,6 +289,7 @@ a{color:inherit}
           <dt>기술</dt><dd>YOLO26n · PP-OCRv5 · ONNX · WebGPU/WASM · Python→JS 이식</dd>
         </dl>
         <a class="more" href="libar/">자세히 보기 <span aria-hidden="true">→</span></a>
+        <a class="more more--ghost" href="https://ainsof.dev/libar-demo/" target="_blank" rel="noopener">데모 써보기 <span aria-hidden="true">→</span></a>
       </div>
 
       <div class="fade">
@@ -324,7 +332,11 @@ a{color:inherit}
           <dt>기술</dt><dd>React 19 · Vite · Fastify · SQLite · Gemini 2.5 Flash · gemini-embedding-001 · GitHub Actions · Lightsail · pm2</dd>
         </dl>
         <a class="more" href="reviewtech/">자세히 보기 <span aria-hidden="true">→</span></a>
-        <a class="more more--ghost" href="https://minion.toss.im/xUtNRNdo" target="_blank" rel="noopener">토스에서 앱 열기 <span aria-hidden="true">→</span></a>
+        <a class="more more--ghost toss-open" href="https://minion.toss.im/xUtNRNdo" target="_blank" rel="noopener">토스에서 앱 열기 <span aria-hidden="true">→</span></a>
+        <div class="toss-qr">
+          <img src="assets/qr-reviewtech.svg" alt="리뷰테크 토스 미니앱으로 가는 QR 코드" width="96" height="96">
+          <p><b>토스 미니앱은 모바일에서만 열립니다.</b><br>휴대폰 카메라로 QR을 찍어 바로 써 보세요.</p>
+        </div>
       </div>
 
       <div class="fade">
@@ -388,11 +400,6 @@ a{color:inherit}
   <div class="wrap">
     <h2 class="fade">문제를 정의하고 오직 결과로 증명하는<br>AI Native 인재를 찾으신다면.</h2>
     <ul class="links fade">
-      <li><div><span class="k">포트폴리오(WEB)</span><a class="v" href="https://ainsof.dev">https://ainsof.dev</a></div></li>
-      <li><div><span class="k">LibAR</span><a class="v" href="https://ainsof.dev/libar/">https://ainsof.dev/libar/</a></div></li>
-      <li><div><span class="k">리뷰테크</span><a class="v" href="https://ainsof.dev/reviewtech/">https://ainsof.dev/reviewtech/</a></div></li>
-      <li><div><span class="k">리뷰테크 · 토스</span><a class="v" href="https://minion.toss.im/xUtNRNdo" target="_blank" rel="noopener">https://minion.toss.im/xUtNRNdo</a></div></li>
-      <li><div><span class="k">RFPilot</span><a class="v" href="https://ainsof.dev/bidmate/">https://ainsof.dev/bidmate/</a></div></li>
       <li><div><span class="k">이메일</span><a class="v" href="mailto:leeaingm0633@gmail.com">leeaingm0633@gmail.com</a></div></li>
       <li><div><span class="k">GitHub</span><a class="v" href="https://github.com/ain0633" target="_blank" rel="noopener">github.com/ain0633</a></div></li>
     </ul>

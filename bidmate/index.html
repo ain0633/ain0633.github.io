@@ -36,7 +36,7 @@
 :root{
   --c-bg:#f9f9ff; --c-surface:#ffffff; --c-surface-2:#f1f3ff; --c-surface-3:#e9ebfd;
   --c-border:#e4e5f7; --c-border-strong:#c9cbee;
-  --c-text:#17172b; --c-text-2:#53546c; --c-text-3:#8a8ba6;
+  --c-text:#17172b; --c-text-2:#53546c; --c-text-3:#696a86;
   --c-accent:#3525cd; --c-accent-2:#4a3ad8; --c-accent-soft:#eeedfd; --c-accent-line:#c9c4f5;
   --c-on-accent:#ffffff;
   --c-ok-soft:#ecfdf5; --c-ok-line:#a7e8c8; --c-ok-text:#0f7a52;
@@ -46,7 +46,7 @@
   --f-disp:"SeoulAlrim","Pretendard",-apple-system,"Malgun Gothic",sans-serif;
   --f-mono:"PlexMono","Pretendard",ui-monospace,SFMono-Regular,Consolas,monospace;
 
-  --fs-xs:.6875rem; --fs-sm:.8125rem; --fs-base:.9375rem; --fs-md:1.0625rem;
+  --fs-xs:.75rem; --fs-sm:.875rem; --fs-base:.9375rem; --fs-md:1.0625rem;
   --fs-lg:1.25rem; --fs-xl:1.625rem; --fs-stat:clamp(1.75rem,5vw,2.5rem);
   --fs-sec:clamp(1.3rem,3.3vw,3rem);       /* 섹션 제목 h2 — 본문 제목의 1.5배 아래 */
 
@@ -70,7 +70,7 @@
     color-scheme:dark;
     --c-bg:#121218; --c-surface:#1c1c24; --c-surface-2:#23232e; --c-surface-3:#2b2b38;
     --c-border:#32323f; --c-border-strong:#4a4a5c;
-    --c-text:#ecedf4; --c-text-2:#a4a5ba; --c-text-3:#76778c;
+    --c-text:#ecedf4; --c-text-2:#a4a5ba; --c-text-3:#9192a7;
     --c-accent:#8b80f0; --c-accent-2:#9d93f4; --c-accent-soft:#221f4a; --c-accent-line:#4b44a0;
     --c-on-accent:#12101f;
     --c-ok-soft:#0e2e22; --c-ok-line:#1f6a4b; --c-ok-text:#5fd3a0;
@@ -82,7 +82,7 @@
   color-scheme:dark;
   --c-bg:#121218; --c-surface:#1c1c24; --c-surface-2:#23232e; --c-surface-3:#2b2b38;
   --c-border:#32323f; --c-border-strong:#4a4a5c;
-  --c-text:#ecedf4; --c-text-2:#a4a5ba; --c-text-3:#76778c;
+  --c-text:#ecedf4; --c-text-2:#a4a5ba; --c-text-3:#9192a7;
   --c-accent:#8b80f0; --c-accent-2:#9d93f4; --c-accent-soft:#221f4a; --c-accent-line:#4b44a0;
   --c-on-accent:#12101f;
   --c-ok-soft:#0e2e22; --c-ok-line:#1f6a4b; --c-ok-text:#5fd3a0;
@@ -486,6 +486,9 @@ footer{ border-top:var(--bw) solid var(--c-border); padding:var(--s-6) 0 var(--s
     transition-duration:1ms !important; }
   .rise{ opacity:1; transform:none; }
 }
+
+/* 글자를 키운 뒤 한글이 음절 중간에서 끊기지 않게 */
+body{word-break:keep-all;overflow-wrap:break-word}
 </style>
 </head>
 <body>
